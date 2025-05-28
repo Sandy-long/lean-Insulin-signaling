@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>胰岛素信号通路比喻</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    /* 让蓝色粗线不留白，两端撑满屏幕宽度 */
+    .full-width-line {
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      height: 4px;
+      background-color: #3b82f6; /* Tailwind 的 bg-blue-500 */
+    }
+    /* 标题容器上下居中，保证高度固定，垂直居中 */
+    .title-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 56px; /* 和原 py-4 差不多高度 */
+      max-width: 1024px; /* max-w-4xl */
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #f8f8f8;
+      font-weight: 700;
+      font-size: 1.5rem; /* text-2xl */
+      color: #111827; /* text-gray-900 */
+    }
+  </style>
+</head>
+<body class="bg-gray-50 p-6">
+
+  <!-- 标题背景全宽无留白，标题上下居中 -->
+  <div>
+    <div class="title-container">
+      胰岛素信号通路比喻
+    </div>
+    <div class="full-width-line"></div>
+  </div>
+
+  <!-- 主体容器 -->
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Mermaid 流程图 -->
+    <div class="mb-12 flex justify-center">
+      <div class="max-w-full">
+        <h2 class="text-lg font-semibold text-center mb-4"></h2>
+        <pre class="mermaid text-sm">
+graph TD
+  A[胰岛素（Insulin）🔑] --> B[胰岛素受体（IR）🔒]
+  B --> C[酪氨酸磷酸化⚡]
+  C --> D[IRS-1 / IRS-2 🔌]
+  D -->|正常磷酸化| E[PI3K → AKT 通路 🔧]
+  E --> F[GLUT4 🚪]
+  F --> G[葡萄糖进入细胞 💥]
+
+  D -.->|丝氨酸磷酸化（错误）| H[信号受阻 ❌<br>电线短路]
+  H -->|无法激活| E
+        </pre>
+      </div>
+    </div>
+
+    <!-- 表格区域 -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-300 rounded-lg shadow-sm bg-white">
+        <thead class="bg-blue-100">
+          <tr>
+            <th class="text-left p-3 font-semibold border border-gray-300">生物学结构</th>
+            <th class="text-left p-3 font-semibold border border-gray-300">生活比喻</th>
+            <th class="text-left p-3 font-semibold border border-gray-300">作用说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">胰岛素（Insulin）</td>
+            <td class="p-3 border border-gray-200">钥匙</td>
+            <td class="p-3 border border-gray-200">由胰腺制造，用来“打开”细胞的摄糖机制</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">胰岛素受体（IR）</td>
+            <td class="p-3 border border-gray-200">锁</td>
+            <td class="p-3 border border-gray-200">位于细胞膜上，识别钥匙并响应</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">磷酸化（tyrosine phosphorylation）</td>
+            <td class="p-3 border border-gray-200">锁芯内的“点火”机制</td>
+            <td class="p-3 border border-gray-200">钥匙插入后，锁芯内部启动 → 释放电流（信号）</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">IRS-1 等适配蛋白</td>
+            <td class="p-3 border border-gray-200">电线 + 电路开关</td>
+            <td class="p-3 border border-gray-200">锁芯放电后，要有电线把信号送出去</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">丝氨酸磷酸化（错误磷酸化）</td>
+            <td class="p-3 border border-gray-200">电线被烧坏/短路</td>
+            <td class="p-3 border border-gray-200">电流不通，信号断了 → 胰岛素作用失败</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">PI3K → AKT 通路</td>
+            <td class="p-3 border border-gray-200">电路板（自动门开关）</td>
+            <td class="p-3 border border-gray-200">接收到电流后，指挥细胞“开门”让葡萄糖进去</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 border border-gray-200">GLUT4（葡萄糖转运体）</td>
+            <td class="p-3 border border-gray-200">门</td>
+            <td class="p-3 border border-gray-200">最终由信号控制打开 → 葡萄糖进入细胞</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+</html>
