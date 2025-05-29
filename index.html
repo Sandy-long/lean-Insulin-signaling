@@ -29,7 +29,7 @@
       max-width: 1024px; /* max-w-4xl */
       margin-left: auto;
       margin-right: auto;
-      background-color: #f8f8f8;
+      background-color: #f7f7f7;
       font-weight: 700;
       font-size: 1.5rem; /* text-2xl */
       color: #111827; /* text-gray-900 */
@@ -49,10 +49,9 @@
   <!-- 主体容器 -->
   <div class="max-w-4xl mx-auto">
 
-    <!-- Mermaid 流程图 -->
-    <div class="mb-12 flex justify-center">
+    <!-- Mermaid 流程图及备注 -->
+    <div class="mb-12 flex flex-col items-center justify-center">
       <div class="max-w-full">
-        <h2 class="text-lg font-semibold text-center mb-4"></h2>
         <pre class="mermaid text-sm">
 graph TD
   A[胰岛素（Insulin）🔑] --> B[胰岛素受体（IR）🔒]
@@ -66,6 +65,9 @@ graph TD
   H -->|无法激活| E
         </pre>
       </div>
+      <p class="mt-2 text-center text-gray-700 text-sm max-w-4xl px-4">
+        <strong>备注：</strong>IRS-1：促进肌肉和脂肪细胞摄糖 &nbsp;&nbsp; | &nbsp;&nbsp; IRS-2：调控肝脏减少产糖 ↑胰岛β细胞分泌胰岛素
+      </p>
     </div>
 
     <!-- 表格区域 -->
