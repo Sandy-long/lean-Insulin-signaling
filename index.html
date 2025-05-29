@@ -10,44 +10,66 @@
     mermaid.initialize({ startOnLoad: true });
   </script>
   <style>
-    /* 让蓝色粗线不留白，两端撑满屏幕宽度 */
-    .full-width-line {
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      height: 0px;
-      background-color: #3b82f6; /* Tailwind 的 bg-blue-500 */
+    /* 禁止横向滚动 */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
-    /* 标题容器上下居中，保证高度固定，垂直居中 */
-  .title-container {
-  display: flex;
-  justify-content: flex-start; /* 文字靠左 */
-  align-items: center;
-  height: 80px;
-  max-width: 1024px;  /* 和流程图容器一样 */
-  margin: 0 auto;     /* 水平居中 */
-  padding-left: 1rem; /* 适当内边距微调 */
-  background-color: transparent;
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #111827;
-}
+
+    /* 标题背景全屏宽，紧贴顶部，普通流布局（不固定） */
+    .title-background {
+      background-color: #f7f7f7; /* 浅灰 */
+      width: 100vw;               /* 视口宽度 */
+      height: 80px;
+      display: flex;
+      justify-content: center;    /* 水平居中 */
+      align-items: center;        /* 垂直居中 */
+      box-sizing: border-box;
+      padding: 0 1rem;            /* 左右内边距 */
+      /* 去掉 position: fixed 让它随页面滚动 */
+    }
+
+    /* 限宽容器，限制文字最大宽度，居中 */
+    .title-container {
+      max-width: 1024px;
+      width: 100%;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #111827;
+      text-align: center; /* 文字水平居中 */
+    }
+
+    /* 标题底部蓝线，普通流布局 */
+    .title-bottom-line {
+      width: 100vw;
+      height: 4px;
+      background-color: #3b82f6; /* 蓝色 */
+      /* 不固定 */
+    }
+
+    /* 主体内容，取消留白 */
+    .main-content {
+      padding-top: 1rem; /* 适当间距 */
+      max-width: 1024px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   </style>
 </head>
-<body class="bg-gray-50 p-6">
+<body class="bg-gray-50">
 
-  <!-- 标题背景全宽无留白，标题上下居中 -->
-  <div>
-    <div class="title-container">
-      胰岛素信号通路比喻
-    </div>
-    <div class="full-width-line"></div>
+  <!-- 标题背景和文字 -->
+  <div class="title-background">
+    <div class="title-container">胰岛素信号通路比喻</div>
   </div>
 
+  <!-- 标题底部蓝线 -->
+  <div class="title-bottom-line"></div>
+
   <!-- 主体容器 -->
-  <div class="max-w-4xl mx-auto">
+  <div class="main-content">
 
     <!-- Mermaid 流程图及备注 -->
     <div class="mb-12 flex flex-col items-center justify-center">
@@ -121,5 +143,6 @@ graph TD
     </div>
 
   </div>
+
 </body>
 </html>
