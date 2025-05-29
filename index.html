@@ -10,71 +10,67 @@
     mermaid.initialize({ startOnLoad: true });
   </script>
   <style>
-    /* 禁止横向滚动 */
     html, body {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
-
-    /* 标题背景全屏宽，紧贴顶部，普通流布局（不固定） */
     .title-background {
-      background-color: #f7f7f7; /* 浅灰 */
-      width: 100vw;               /* 视口宽度 */
+      background-color: #f7f7f7;
+      width: 100vw;
       height: 80px;
       display: flex;
-      justify-content: center;    /* 水平居中 */
-      align-items: center;        /* 垂直居中 */
+      justify-content: center;
+      align-items: center;
       box-sizing: border-box;
-      padding: 0 1rem;            /* 左右内边距 */
-      /* 去掉 position: fixed 让它随页面滚动 */
+      padding: 0 1rem;
     }
-
-    /* 限宽容器，限制文字最大宽度，居中 */
     .title-container {
       max-width: 1024px;
       width: 100%;
       font-weight: 700;
       font-size: 1.5rem;
       color: #111827;
-      text-align: center; /* 文字水平居中 */
+      text-align: center;
     }
-
-    /* 标题底部蓝线，普通流布局 */
     .title-bottom-line {
       width: 100vw;
       height: 4px;
-      background-color: #3b82f6; /* 蓝色 */
-      /* 不固定 */
+      background-color: #3b82f6;
     }
-
-    /* 主体内容，取消留白 */
     .main-content {
-      padding-top: 1rem; /* 适当间距 */
+      padding-top: 1rem;
       max-width: 1024px;
       margin: 0 auto;
       padding-left: 1rem;
       padding-right: 1rem;
     }
+    .mermaid {
+      font-size: 1.1rem !important;
+    }
   </style>
 </head>
 <body class="bg-gray-50">
 
-  <!-- 标题背景和文字 -->
   <div class="title-background">
     <div class="title-container">胰岛素信号通路比喻</div>
   </div>
 
-  <!-- 标题底部蓝线 -->
   <div class="title-bottom-line"></div>
 
-  <!-- 主体容器 -->
   <div class="main-content">
 
-    <!-- Mermaid 流程图及备注 -->
-    <div class="mb-12 flex flex-col items-center justify-center">
-      <div class="max-w-full">
-        <pre class="mermaid text-sm">
+    <div class="mb-12">
+      <div class="text-gray-800 text-left text-[17px] leading-relaxed max-w-3xl mx-auto mb-6">
+        在下图中，我们用<strong>“钥匙—锁—电路—门”</strong>的比喻来形象解释胰岛素信号通路的全过程：
+        胰岛素就像<strong>钥匙</strong>，打开细胞膜上的<strong>受体（锁）</strong>，触发一连串“电路”反应，最终指挥细胞膜上的<strong>门（GLUT4）</strong>打开，让葡萄糖顺利进入细胞。
+        图中还标出了正常与异常的信号分支：
+        <strong>IRS-1</strong> 主要作用于肌肉与脂肪细胞摄糖，<strong>IRS-2</strong> 则参与肝脏调控与胰岛素分泌；
+        一旦发生错误的<strong>“丝氨酸磷酸化”</strong>，信号通路就像<strong>电线短路</strong>，胰岛素功能将受阻。
+      </div>
+
+      <div class="flex justify-center overflow-x-auto">
+        <pre class="mermaid">
 graph TD
   A[胰岛素（Insulin）🔑] --> B[胰岛素受体（IR）🔒]
   B --> C[酪氨酸磷酸化⚡]
@@ -87,13 +83,9 @@ graph TD
   H -->|无法激活| E
         </pre>
       </div>
-      <p class="mt-2 text-center text-gray-700 text-sm max-w-4xl px-4">
-        <strong>备注：</strong>IRS-1：促进肌肉和脂肪细胞摄糖 &nbsp;&nbsp; | &nbsp;&nbsp; IRS-2：调控肝脏减少产糖 ↑胰岛β细胞分泌胰岛素
-      </p>
     </div>
 
-    <!-- 表格区域 -->
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto mb-20">
       <table class="min-w-full border border-gray-300 rounded-lg shadow-sm bg-white">
         <thead class="bg-blue-100">
           <tr>
