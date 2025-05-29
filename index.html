@@ -21,18 +21,19 @@
       background-color: #3b82f6; /* Tailwind 的 bg-blue-500 */
     }
     /* 标题容器上下居中，保证高度固定，垂直居中 */
-    .title-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 80px; /* 更高 */
-     width: 100vw;           /* 撑满视口宽度 */
-  margin: 0;              /* 去掉自动 margin */
-      background-color: transparent; /* 去掉背景 */
-      font-weight: 700;
-      font-size: 1.5rem; /* text-2xl */
-      color: #111827; /* text-gray-900 */
-    }
+  .title-container {
+  display: flex;
+  justify-content: flex-start; /* 文字靠左 */
+  align-items: center;
+  height: 80px;
+  max-width: 1024px;  /* 和流程图容器一样 */
+  margin: 0 auto;     /* 水平居中 */
+  padding-left: 1rem; /* 适当内边距微调 */
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #111827;
+}
   </style>
 </head>
 <body class="bg-gray-50 p-6">
