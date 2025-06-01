@@ -1,139 +1,232 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>胰岛素信号通路比喻</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>葡萄糖进入细胞流程图</title>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
   </script>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    .title-background {
-      background-color: #f7f7f7;
-      width: 100vw;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-      padding: 0 1rem;
-    }
-    .title-container {
-      max-width: 1024px;
+    .container {
+      max-width: 800px;
       width: 100%;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #111827;
-      text-align: center;
-    }
-    .title-bottom-line {
-      width: 100vw;
-      height: 4px;
-      background-color: #3b82f6;
-    }
-    .main-content {
-      padding-top: 1rem;
-      max-width: 1024px;
       margin: 0 auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
     }
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 0 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin: 1.67rem 0;
+      text-align: center;
+      color: #444;
+    }
+
+    .header-bg {
+      background-color: #f7f7f7;
+      border-bottom: 4px solid #3498db;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      margin-bottom: 2rem;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .description {
+      max-width: 760px;
+      background-color: transparent;
+      border-left: none;
+      padding: 0;
+      margin: -1rem auto 2rem auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      border-radius: 4px;
+      box-shadow: none;
+    }
+
     .mermaid {
-      font-size: 1.1rem !important;
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      overflow-x: auto;
+      font-size: 1.2rem;
     }
+
+    /* 表格样式 */
+    .overflow-x-auto {
+      width: 100%;
+      max-width: 800px;
+      overflow-x: auto;
+      margin-top: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 1rem;
+    }
+    thead {
+      background-color: #e1f0ff;
+      border-bottom: 2px solid #3498db;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      white-space: nowrap; /* 禁止换行 */
+      font-size: 0.85rem; /* 调小字体 */
+    }
+    
+    th:last-child, td:last-child {
+      border-right: none;
+    }
+    tbody tr:hover {
+      background-color: #f9faff;
+    }
+	.container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.container ol {
+  padding-left: 1.5rem;
+  margin: 0 ;
+  max-width: 760px;
+}
   </style>
 </head>
-<body class="bg-gray-50">
+<body>
+  <div class="container">
+    <div class="header-bg">
+      <h2>血液中的葡萄糖进入细胞流程图</h2>
+    </div> 
 
-  <div class="title-background">
-    <div class="title-container">胰岛素信号通路比喻</div>
+    <div class="description">
+      在下图中，我们用“钥匙—锁—电路—门”的比喻来形象解释胰岛素信号通路的全过程：
+      <strong>胰岛素</strong>就像<strong>钥匙</strong>，打开细胞膜上的<strong>受体（指纹锁）</strong>，触发一连串<strong>“电路”</strong>反应，最终指挥细胞膜上的<strong>门（GLUT4）</strong>打开，让葡萄糖顺利进入细胞。
+    </div>
+
+    <div class="mermaid">
+flowchart TD
+    %% 垂直排列结构优化，让“葡萄糖进入细胞”更居中
+    A[血液中的葡萄糖]
+
+    subgraph 接收器
+        direction TB
+        B1[肝脏 GLUT2]
+        B2[骨骼肌 GLUT4]
+        B3[脂肪组织 GLUT4]
+        B4[脑 GLUT1/GLUT3]
+    end
+
+    A -->|非胰岛素依赖| B1
+    A -->|胰岛素依赖| B2
+    A -->|胰岛素依赖| B3
+    A -->|非胰岛素依赖| B4
+
+    B1 -->|葡萄糖通过GLUT2自由扩散| J7[葡萄糖进入细胞]
+    B2 --> I[胰岛素调控血糖进入细胞]
+    B3 --> I
+    B4 -->|GLUT1从血脑屏障扩散| K[大脑间质液血糖]
+
+    K -->|GLUT4 → 神经元<br>GLUT1 → 胶质细胞| J7
+
+    I --> J1[胰岛素（Insulin）🔑]
+    J1 --> J2[胰岛素受体 IR🔒]
+    J2 --> J3[酪氨酸磷酸化⚡]
+    J3 --> J4[IRS-1🔌]
+    J4 -->|正常磷酸化| J5[PI3K → AKT 通路 🔧]
+    J5 --> J6[GLUT4 转膜]
+    J6 --> J7
+
+    J4 -.->|丝氨酸磷酸化（错误）| J8[信号受阻 ❌<br>电线短路]
+    J8 -->|无法激活| J5
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B1 fill:#bbf,stroke:#333,stroke-width:1px,rx:8,ry:8
+    style B2 fill:#bfb,stroke:#333,stroke-width:1px,rx:8,ry:8
+    style B3 fill:#bfb,stroke:#333,stroke-width:1px,ry:8,rx:8
+    style B4 fill:#bbf,stroke:#333,stroke-width:1px,rx:8,ry:8
+    style I fill:#f96,stroke:#333,stroke-width:2px,rx:8,ry:8
+    </div>
   </div>
 
-  <div class="title-bottom-line"></div>
-
-  <div class="main-content">
-
-    <div class="mb-12">
-      <div class="text-gray-800 text-left text-[17px] leading-relaxed max-w-3xl mx-auto mb-6">
-        在下图中，我们用<strong>“钥匙—锁—电路—门”</strong>的比喻来形象解释胰岛素信号通路的全过程：
-        胰岛素就像<strong>钥匙</strong>，打开细胞膜上的<strong>受体（指纹锁）</strong>，触发一连串“电路”反应，最终指挥细胞膜上的<strong>门（GLUT4）</strong>打开，让葡萄糖顺利进入细胞。
-        图中还标出了正常与异常的信号分支：
-        <strong>IRS-1</strong> 主要作用于肌肉与脂肪细胞摄糖，<strong>IRS-2</strong> 则参与肝脏调控与胰岛素分泌；
-        一旦发生错误的<strong>“丝氨酸磷酸化”</strong>，信号通路就像<strong>电线短路</strong>，胰岛素功能将受阻。
-      </div>
-
-      <div class="flex justify-center overflow-x-auto">
-        <pre class="mermaid">
-graph TD
-  A[胰岛素（Insulin）🔑] --> B[胰岛素受体（IR）🔒]
-  B --> C[酪氨酸磷酸化⚡]
-  C --> D[IRS-1/ IRS-2🔌]
-  D -->|正常磷酸化| E[PI3K → AKT 通路 🔧]
-  E --> F[GLUT4 🚪]
-  F --> G[葡萄糖进入细胞 💥]
-
-  D -.->|丝氨酸磷酸化（错误）| H[信号受阻 ❌<br>电线短路]
-  H -->|无法激活| E
-        </pre>
-      </div>
-    </div>
-
-    <div class="overflow-x-auto mb-20">
-      <table class="min-w-full border border-gray-300 rounded-lg shadow-sm bg-white">
-        <thead class="bg-blue-100">
-          <tr>
-            <th class="text-left p-3 font-semibold border border-gray-300">生物学结构</th>
-            <th class="text-left p-3 font-semibold border border-gray-300">生活比喻</th>
-            <th class="text-left p-3 font-semibold border border-gray-300">作用说明</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">胰岛素（Insulin）</td>
-            <td class="p-3 border border-gray-200">钥匙</td>
-            <td class="p-3 border border-gray-200">由胰腺制造，用来“打开”细胞的摄糖机制</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">胰岛素受体（IR）</td>
-            <td class="p-3 border border-gray-200">指纹锁</td>
-            <td class="p-3 border border-gray-200">位于细胞膜上，识别钥匙并响应</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">磷酸化（tyrosine phosphorylation）</td>
-            <td class="p-3 border border-gray-200">锁芯内的“点火”机制</td>
-            <td class="p-3 border border-gray-200">钥匙插入后，锁芯内部启动 → 释放电流（信号）</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">IRS-1 等适配蛋白</td>
-            <td class="p-3 border border-gray-200">电线 + 电路开关</td>
-            <td class="p-3 border border-gray-200">锁芯放电后，要有电线把信号送出去</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">丝氨酸磷酸化（错误磷酸化）</td>
-            <td class="p-3 border border-gray-200">电线被烧坏/短路</td>
-            <td class="p-3 border border-gray-200">电流不通，信号断了 → 胰岛素作用失败</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">PI3K → AKT 通路</td>
-            <td class="p-3 border border-gray-200">电路板（自动门开关）</td>
-            <td class="p-3 border border-gray-200">接收到电流后，指挥细胞“开门”让葡萄糖进去</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border border-gray-200">GLUT4（葡萄糖转运体）</td>
-            <td class="p-3 border border-gray-200">门</td>
-            <td class="p-3 border border-gray-200">最终由信号控制打开 → 葡萄糖进入细胞</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+  <div class="overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th>生物学结构</th>
+          <th>生活比喻</th>
+          <th>作用说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>胰岛素（Insulin）</td>
+          <td>钥匙</td>
+          <td>由胰腺制造，用来“打开”细胞的摄糖机制</td>
+        </tr>
+        <tr>
+          <td>胰岛素受体（IR）</td>
+          <td>指纹锁</td>
+          <td>位于细胞膜上，识别钥匙并响应</td>
+        </tr>
+        <tr>
+          <td>磷酸化（tyrosine phosphorylation）</td>
+          <td>锁芯内的“点火”机制</td>
+          <td>钥匙插入后，锁芯内部启动 → 释放电流（信号）</td>
+        </tr>
+        <tr>
+          <td>IRS-1 等适配蛋白</td>
+          <td>电线 + 电路开关</td>
+          <td>锁芯放电后，要有电线把信号送出去</td>
+        </tr>
+        <tr>
+          <td>丝氨酸磷酸化（错误磷酸化）</td>
+          <td>电线被烧坏/短路</td>
+          <td>电流不通，信号断了 → 胰岛素作用失败</td>
+        </tr>
+        <tr>
+          <td>PI3K → AKT 通路</td>
+          <td>电路板（自动门开关）</td>
+          <td>接收到电流后，指挥细胞“开门”让葡萄糖进去</td>
+        </tr>
+        <tr>
+          <td>GLUT4（葡萄糖转运体）</td>
+          <td>门</td>
+          <td>最终由信号控制打开 → 葡萄糖进入细胞</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="container" style="margin-top: 3rem; text-align: left;">
+    <h2 style="font-size: 1.4rem; color: #333; margin-bottom: 1rem; text-align: left;">参考文献</h2>
+    <ol style="line-height: 1.7; font-size: 0.7rem; padding-left: 1.2rem; margin: 0;">
+      <li>Brain Insulin Resistance: Key Mechanisms and Implications. <em>Psychiatry and Behavioral Sciences</em>, 2024.</li>
+      <li>RNA-binding protein GIGYF2 orchestrates hepatic insulin resistance through STAU1/PTEN-mediated disruption of the PI3K/AKT signaling cascade. <em>Molecular Medicine</em>, 2024.</li>
+      <li>Insulin signaling and GLUT4 trafficking in health and disease. <em>Biochemical Society Transactions</em>, 2023.</li>
+    </ol>
   </div>
 
 </body>
